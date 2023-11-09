@@ -20,16 +20,22 @@ export class ListaProdutosComponent {
   ) {
     this.productsList = this.cadastroService.products;
     this.deletedProductsList = this.LogsDeleteService.deletedProducts
+
   }
 
 
   delProduct(i: number): void {
     const deletedProductsList = this.productsList[i];
     this.cadastroService.del(i);
-    this.LogsDeleteService.delete(deletedProductsList);
+    this.LogsDeleteService.deleted(deletedProductsList);
+
+  }
+  clearLogs(): void {
+    this.LogsDeleteService.clearDeletedLogs()
 
   }
   editproduct(i: number, newName: string, newAmount: number): void {
+
     this.productToEdit = this.productsList[i];
     this.newName = newName;
     this.newAmount = newAmount;
@@ -39,13 +45,13 @@ export class ListaProdutosComponent {
     this.validateEdit(this.newName, this.newAmount)
   }
   openModal() {
-    const modelDiv = document.getElementById('myModal');
+    const modelDiv = document.getElementById('myModalEdition');
     if (modelDiv != null) {
       modelDiv.style.display = 'block';
     }
   }
   closeModal() {
-    const modelDiv = document.getElementById('myModal');
+    const modelDiv = document.getElementById('myModalEdition');
     if (modelDiv != null) {
       modelDiv.style.display = 'none';
     }
