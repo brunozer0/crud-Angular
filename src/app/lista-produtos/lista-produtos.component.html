@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" (click)="saveEdit()" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-success" (click)="saveEdit()">
                     Salvar
                 </button>
             </div>
@@ -31,7 +31,6 @@
 </div>
 
 <table class="table">
-
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -52,6 +51,32 @@
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
                     (click)="editproduct(i,product.name, product.amount)">Editar</button>
             </td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Deletado em</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="" *ngFor="let deleted of deletedProductsList; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td> {{deleted.product.name}}</td>
+            <td>{{deleted.product.amount}}</td>
+            <td>{{deleted.deletadoEm}}</td>
+
         </tr>
 
     </tbody>

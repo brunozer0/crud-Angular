@@ -12,6 +12,8 @@ export class CadastroComponent {
   productsList!: StockRegister[];
   productsAmount!: number;
 
+
+
   constructor(private cadastroService: CadastroService) {
     this.productsList = this.cadastroService.products;
   }
@@ -26,7 +28,7 @@ export class CadastroComponent {
     }
 
     if (!amount) {
-      alert("Quantidade invalida")
+      alert("Quantidade inválida")
       return;
     }
 
