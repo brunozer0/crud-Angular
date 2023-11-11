@@ -25,6 +25,7 @@ export class CadastroService {
         this.products.splice(i, 1)
     }
     edit(i: number, newName: string, newAmount: number): void {
+
         if (i >= 0 && i < this.products.length) {
             const updatedProduct: StockRegister = {
                 name: newName,

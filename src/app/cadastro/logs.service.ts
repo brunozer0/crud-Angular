@@ -27,7 +27,7 @@ export class LogsService {
     const log: ILog = {
       hora: new Date().toLocaleTimeString('pt-BR'),
       data: new Date().toLocaleDateString('pt-br'),
-      descricao: `Produto:${deletedItem.name}; 
+      descricao: `Produto:${deletedItem.name}
       Qtde - ${deletedItem.amount}`,
       tipo: 'Exclusão'
     };
@@ -37,13 +37,13 @@ export class LogsService {
     const log: ILog = {
       hora: new Date().toLocaleTimeString('pt-BR'),
       data: new Date().toLocaleDateString('pt-br'),
-      descricao: `Produto alterado de - ${oldItem.name}; 
+      descricao: `Produto- ${oldItem.name}
       Quantidade - ${newItem.amount}`,
       tipo: 'Edição'
     };
     this.logs.push(log);
   };
-  clearLogs = () => {
+  clearLogs() {
     while (this.logs.length > 0) {
       this.logs.shift();
     }

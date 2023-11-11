@@ -9,24 +9,23 @@ import { ILog } from '../model/logs';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent {
-  products!: string;
+  product!: string;
   productsList!: StockRegister[];
-  productsAmount!: number;
+  productAmount!: number;
   listaLogs!: ILog[];
-  name!: string;
-  amount: number = 0;
+
 
   constructor(private cadastroService: CadastroService, private loggerService: LogsService) {
     this.productsList = this.cadastroService.products;
     this.listaLogs = this.loggerService.logs;
   }
   addNewProduct(): void {
-    this.validateInputs(this.products, this.productsAmount)
+    this.validateInputs(this.product, this.productAmount)
 
   }
 
-  validateInputs(product: string, amount: number) {
-    if (!product) {
+  validateInputs(name: string, amount: number) {
+    if (!name) {
       alert("Preencha o campo nome")
       return;
     }
@@ -36,9 +35,9 @@ export class CadastroComponent {
       return;
     }
 
-    this.cadastroService.add(this.products, this.productsAmount)
-    this.products = '';
-    this.productsAmount = 0;
+    this.cadastroService.add(this.product, this.productAmount)
+    this.product = '';
+    this.productAmount = 0;
   }
 
 }

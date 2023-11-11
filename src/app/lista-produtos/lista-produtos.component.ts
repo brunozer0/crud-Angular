@@ -12,8 +12,8 @@ export class ListaProdutosComponent {
 
   productsList!: StockRegister[];
   listaLogs: ILog[] = [];
-  name!: string;
-  amount!: number;
+  product!: string;
+  productAmount!: number;
   getIndex!: number;
 
   constructor(
@@ -32,21 +32,13 @@ export class ListaProdutosComponent {
   clearLogs(): void {
     this.LogsService.clearLogs()
   }
-  editproduct(): void {
-    this.validateInputs(this.name, this.amount)
-    let index: number = this.getIndex;
-    let currentProduct: StockRegister = this.productsList[index]
-    this.cadastroService.edit(index, this.name, this.amount);
-    this.LogsService.editarLog(currentProduct, this.productsList[index])
-  }
-  /*   saveEdit(): void {
-      this.validateEdit(this.newName, this.newAmount)
-  
-  
-    } */
+  editproduct() {
+    this.validateInputs(this.product, this.productAmount)
 
-  validateInputs(product: string, amount: number) {
-    if (!product) {
+  }
+
+  validateInputs(name: string, amount: number) {
+    if (!name) {
       alert("Preencha o campo nome")
       return;
     }
@@ -55,7 +47,12 @@ export class ListaProdutosComponent {
       alert("Quantidade inválida")
       return;
     }
-
+    let index: number = this.getIndex;
+    let currentProduct: StockRegister = this.productsList[index]
+    this.cadastroService.edit(index, this.product, this.productAmount);
+    this.LogsService.editarLog(currentProduct, this.productsList[index])
+    this.product = '';
+    this.productAmount = 0;
   }
 
 }

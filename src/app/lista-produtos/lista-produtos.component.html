@@ -3,7 +3,7 @@
     <thead>
 
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Produto
             <th scope="col">Quantidade</th>
             <th scope="col">Ações</th>
@@ -32,7 +32,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Logs dos produtos</h5>
+                <h5 class="modal-title">Logs de Ações</h5>
                 <button type="button" class="close btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -41,7 +41,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Hora</th>
                             <th scope="col">Data</th>
                             <th scope="col">Descrição</th>
@@ -89,13 +89,13 @@
                     <div class="mb-1">
                         Nome
                     </div>
-                    <input type="text" class="form-control" [(ngModel)]="name">
+                    <input type="text" class="form-control" [(ngModel)]="product">
                 </div>
                 <div class="col-4">
                     <div class="mb-1">
                         Quantidade
                     </div>
-                    <input type="number" class="form-control" [(ngModel)]="amount">
+                    <input type="number" class="form-control" [(ngModel)]="productAmount">
                 </div>
             </div>
             <div class="modal-footer">
