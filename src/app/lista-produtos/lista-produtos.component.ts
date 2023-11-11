@@ -1,77 +1,61 @@
 import { Component } from '@angular/core';
 import { StockRegister } from '../model/stockRegister';
 import { CadastroService } from '../cadastro/cadastro.component.service';
-import { LogsDeleteService } from '../lista-produtos/logs-delete.service';
+import { ILog } from '../model/logs';
+import { LogsService } from '../cadastro/logs.service';
 @Component({
   selector: 'app-lista-produtos',
   templateUrl: './lista-produtos.component.html',
   styleUrls: ['./lista-produtos.component.scss']
 })
 export class ListaProdutosComponent {
+
   productsList!: StockRegister[];
-  deletedProductsList: { product: StockRegister, deletadoEm: Date }[] = [];
-  productToEdit: StockRegister | null = null;
-  newName!: string;
-  newAmount!: number;
+  listaLogs: ILog[] = [];
+  name!: string;
+  amount!: number;
+  getIndex!: number;
 
   constructor(
     private cadastroService: CadastroService,
-    private LogsDeleteService: LogsDeleteService
+    private LogsService: LogsService
   ) {
     this.productsList = this.cadastroService.products;
-    this.deletedProductsList = this.LogsDeleteService.deletedProducts
-
+    this.listaLogs = this.LogsService.logs;
   }
 
 
   delProduct(i: number): void {
-    const deletedProductsList = this.productsList[i];
-    this.cadastroService.del(i);
-    this.LogsDeleteService.deleted(deletedProductsList);
-
+    this.LogsService.deleteLogs(this.productsList[i]);
+    this.cadastroService.del(i)
   }
   clearLogs(): void {
-    this.LogsDeleteService.clearDeletedLogs()
+    this.LogsService.clearLogs()
+  }
+  editproduct(): void {
+    this.validateInputs(this.name, this.amount)
+    let index: number = this.getIndex;
+    let currentProduct: StockRegister = this.productsList[index]
+    this.cadastroService.edit(index, this.name, this.amount);
+    this.LogsService.editarLog(currentProduct, this.productsList[index])
+  }
+  /*   saveEdit(): void {
+      this.validateEdit(this.newName, this.newAmount)
+  
+  
+    } */
+
+  validateInputs(product: string, amount: number) {
+    if (!product) {
+      alert("Preencha o campo nome")
+      return;
+    }
+
+    if (!amount) {
+      alert("Quantidade inválida")
+      return;
+    }
 
   }
-  editproduct(i: number, newName: string, newAmount: number): void {
 
-    this.productToEdit = this.productsList[i];
-    this.newName = newName;
-    this.newAmount = newAmount;
-
-  }
-  saveEdit(): void {
-    this.validateEdit(this.newName, this.newAmount)
-  }
-  openModal() {
-    const modelDiv = document.getElementById('myModalEdition');
-    if (modelDiv != null) {
-      modelDiv.style.display = 'block';
-    }
-  }
-  closeModal() {
-    const modelDiv = document.getElementById('myModalEdition');
-    if (modelDiv != null) {
-      modelDiv.style.display = 'none';
-    }
-  }
-
-  validateEdit(newName: string, newAmount: number) {
-    if (!newName) {
-      alert("Preencha o nome")
-      return
-    }
-    if (!newAmount) {
-      alert("Quantidade só pode ter números")
-      return
-    }
-    if (this.productToEdit) {
-      this.cadastroService.edit(this.productsList.indexOf(this.productToEdit), this.newName, this.newAmount);
-
-      this.newName = '';
-      this.newAmount = 0;
-      alert("o produto foi editado!")
-    }
-  }
 }

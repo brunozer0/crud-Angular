@@ -11,7 +11,7 @@ import { ListaProdutosComponent } from './lista-produtos/lista-produtos.componen
   declarations: [
     AppComponent,
     CadastroComponent,
-    ListaProdutosComponent
+    ListaProdutosComponent,
   ],
   imports: [
     BrowserModule,

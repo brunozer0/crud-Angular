@@ -1,7 +1,3 @@
-<!--Botão de registro de logs-->
-<button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModalDeletedLogs">Ver Logs</button>
-
-
 <!--Table dos registros-->
 <table class="table">
     <thead>
@@ -9,7 +5,6 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Produto
-            </th>
             <th scope="col">Quantidade</th>
             <th scope="col">Ações</th>
             <th scope="col"></th>
@@ -25,13 +20,60 @@
             <td class="qualquercoisa">
                 <button class="btn btn-danger" href="#" (click)="delProduct(i)">Excluir</button>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalEdition"
-                    (click)="editproduct(i,product.name, product.amount)">Editar</button>
+                    (click)="getIndex=i">Editar</button>
             </td>
         </tr>
 
     </tbody>
 </table>
 
+<!--Model para os logs-->
+<div class="modal" id="myModalDeletedLogs" tabindex="-1" role="banner">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Logs dos produtos</h5>
+                <button type="button" class="close btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Tipo</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="" *ngFor="let log of listaLogs; let i= index">
+                            <td>{{i}}</td>
+                            <td> {{log.hora}}</td>
+                            <td>{{log.data}}</td>
+                            <td>{{log.descricao}}</td>
+                            <td>{{log.tipo}}</td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" (click)="clearLogs()">
+                    Limpar
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
 <!--Modal Edição -->
 <div class="modal" id="myModalEdition" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -47,64 +89,26 @@
                     <div class="mb-1">
                         Nome
                     </div>
-                    <input type="text" class="form-control" [(ngModel)]="newName">
+                    <input type="text" class="form-control" [(ngModel)]="name">
                 </div>
                 <div class="col-4">
                     <div class="mb-1">
                         Quantidade
                     </div>
-                    <input type="number" class="form-control" [(ngModel)]="newAmount">
+                    <input type="number" class="form-control" [(ngModel)]="amount">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" (click)="saveEdit()">
+                <button type="button" class="btn btn-success" (click)="editproduct()">
                     Salvar
                 </button>
             </div>
         </div>
     </div>
+
+
 </div>
 
-<!--Modal Logs de exclusão-->
-<div class="modal" id="myModalDeletedLogs" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Produtos deletados</h5>
-                <button type="button" class="close btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Produto</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">Deletado em</th>
 
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="" *ngFor="let deleted of deletedProductsList; let i=index">
-                            <th scope="row">{{i+1}}</th>
-                            <td> {{deleted.product.name}}</td>
-                            <td>{{deleted.product.amount}}</td>
-                            <td>{{deleted.deletadoEm}}</td>
-
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-warning" (click)="clearLogs()">
-                    Limpar
-                </button>
-            </div>
-        </div>
-    </div>
-
-</div>
+<!--Botão de registro de logs-->
+<button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModalDeletedLogs">Ver Logs</button>
