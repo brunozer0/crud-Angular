@@ -37,8 +37,9 @@ export class LogsService {
     const log: ILog = {
       hora: new Date().toLocaleTimeString('pt-BR'),
       data: new Date().toLocaleDateString('pt-br'),
-      descricao: `Produto- ${oldItem.name}
-      Quantidade - ${newItem.amount}`,
+      descricao: `O Produto: ${oldItem.name}
+      Quantidade: ${oldItem.amount} foi alterado para
+      Produto:${newItem.name} Quantidade: ${newItem.amount}`,
       tipo: 'Edição'
     };
     this.logs.push(log);
