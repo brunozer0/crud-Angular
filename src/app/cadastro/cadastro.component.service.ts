@@ -5,13 +5,7 @@ import { StockRegister } from "../model/stockRegister";
     providedIn: "root"
 })
 export class CadastroService {
-    products: StockRegister[] = [{
-        name: "Shampoo",
-        amount: 2
-    }, {
-        name: "Condicionador",
-        amount: 2
-    }]
+    products: StockRegister[] = []
 
     add(name: string, amount: number): void {
 
