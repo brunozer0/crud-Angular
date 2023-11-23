@@ -45,8 +45,6 @@ export class LogsService {
     this.logs.push(log);
   };
   clearLogs() {
-    while (this.logs.length > 0) {
-      this.logs.shift();
-    }
+    this.logs = []
   }
 }
