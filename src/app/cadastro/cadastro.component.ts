@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CadastroService } from './cadastro.component.service';
 import { StockRegister } from '../model/stockRegister';
-import { LogsService } from './logs.service';
+import { LogsService } from '../log-produtos/logs.service';
 import { ILog } from '../model/logs';
 @Component({
   selector: 'app-cadastro',

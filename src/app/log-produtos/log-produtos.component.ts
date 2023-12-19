@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { StockRegister } from '../model/stockRegister';
+import { LogsService } from './logs.service';
 import { CadastroService } from '../cadastro/cadastro.component.service';
 import { ILog } from '../model/logs';
-import { LogsService } from '../log-produtos/logs.service';
+import { StockRegister } from '../model/stockRegister';
 @Component({
-  selector: 'app-lista-produtos',
-  templateUrl: './lista-produtos.component.html',
-  styleUrls: ['./lista-produtos.component.scss']
+  selector: 'app-log-produtos',
+  templateUrl: './log-produtos.component.html',
+  styleUrls: ['./log-produtos.component.scss']
 })
-export class ListaProdutosComponent {
+export class LogProdutosComponent {
 
   productsList!: StockRegister[];
   listaLogs: ILog[] = [];
@@ -27,7 +27,7 @@ export class ListaProdutosComponent {
 
   delProduct(i: number): void {
     this.LogsService.deleteLogs(this.productsList[i]);
-    this.cadastroService.del(i)
+
   }
   clearLogs(): void {
     this.LogsService.clearLogs()
@@ -49,10 +49,6 @@ export class ListaProdutosComponent {
     }
     let index: number = this.getIndex;
     let currentProduct: StockRegister = this.productsList[index]
-    this.cadastroService.edit(index, this.product, this.productAmount);
     this.LogsService.editarLog(currentProduct, this.productsList[index])
-    this.product = '';
-    this.productAmount = 0;
   }
-
 }
