@@ -11,7 +11,6 @@ import { LogsService } from '../log-produtos/logs.service';
 export class ListaProdutosComponent {
 
   productsList!: StockRegister[];
-  listaLogs: ILog[] = [];
   product!: string;
   productAmount!: number;
   getIndex!: number;
@@ -21,7 +20,7 @@ export class ListaProdutosComponent {
     private LogsService: LogsService
   ) {
     this.productsList = this.cadastroService.products;
-    this.listaLogs = this.LogsService.logs;
+
   }
 
 
@@ -29,9 +28,7 @@ export class ListaProdutosComponent {
     this.LogsService.deleteLogs(this.productsList[i]);
     this.cadastroService.del(i)
   }
-  clearLogs(): void {
-    this.LogsService.clearLogs()
-  }
+
   editproduct() {
     this.validateInputs(this.product, this.productAmount)
 

@@ -12,9 +12,7 @@ export class LogProdutosComponent {
 
   productsList!: StockRegister[];
   listaLogs: ILog[] = [];
-  product!: string;
-  productAmount!: number;
-  getIndex!: number;
+
 
   constructor(
     private cadastroService: CadastroService,
@@ -25,30 +23,10 @@ export class LogProdutosComponent {
   }
 
 
-  delProduct(i: number): void {
-    this.LogsService.deleteLogs(this.productsList[i]);
-
-  }
   clearLogs(): void {
-    this.LogsService.clearLogs()
-  }
-  editproduct() {
-    this.validateInputs(this.product, this.productAmount)
-
+    console.log(this.LogsService.logs);
+    this.LogsService.clearLogs();
+    console.log('Logs após limpar no componente:', this.LogsService.logs);
   }
 
-  validateInputs(name: string, amount: number) {
-    if (!name) {
-      alert("Preencha o campo nome")
-      return;
-    }
-
-    if (!amount) {
-      alert("Quantidade inválida")
-      return;
-    }
-    let index: number = this.getIndex;
-    let currentProduct: StockRegister = this.productsList[index]
-    this.LogsService.editarLog(currentProduct, this.productsList[index])
-  }
 }

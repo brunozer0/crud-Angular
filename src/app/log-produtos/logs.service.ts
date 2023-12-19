@@ -27,8 +27,8 @@ export class LogsService {
     const log: ILog = {
       hora: new Date().toLocaleTimeString('pt-BR'),
       data: new Date().toLocaleDateString('pt-br'),
-      descricao: `Produto:${deletedItem.name}
-      Qtde - ${deletedItem.amount}`,
+      descricao: `Produto: ${deletedItem.name} |
+      Qtde: ${deletedItem.amount}`,
       tipo: 'Exclusão'
     };
     this.logs.push(log);
@@ -37,14 +37,16 @@ export class LogsService {
     const log: ILog = {
       hora: new Date().toLocaleTimeString('pt-BR'),
       data: new Date().toLocaleDateString('pt-br'),
-      descricao: `O Produto: ${oldItem.name}
-      Quantidade: ${oldItem.amount} foi alterado para
-      Produto:${newItem.name} Quantidade: ${newItem.amount}`,
+      descricao: `Produto: ${oldItem.name}
+      qtd: ${oldItem.amount} | > ${newItem.name}|${newItem.amount}`,
       tipo: 'Edição'
     };
     this.logs.push(log);
   };
+
   clearLogs() {
+    console.log('Limpando logs no serviço...');
+
     this.logs = []
   }
 }
