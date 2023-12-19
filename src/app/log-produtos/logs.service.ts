@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ILog } from "../model/logs";
 import { StockRegister } from '../model/stockRegister';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -47,6 +46,6 @@ export class LogsService {
   clearLogs() {
     console.log('Limpando logs no serviço...');
 
-    this.logs = []
+    this.logs.length = 0;
   }
 }
