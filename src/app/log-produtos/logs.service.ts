@@ -46,6 +46,8 @@ export class LogsService {
   clearLogs() {
     console.log('Limpando logs no serviço...');
 
-    this.logs.length = 0;
+    // this.logs = [];  // porque ele nao limpa assim??
+
+    this.logs.length = 0; //assim funciona
   }
 }
